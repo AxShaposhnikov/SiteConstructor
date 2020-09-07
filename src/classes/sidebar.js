@@ -1,12 +1,16 @@
+import {TextBlock, TitleBlock} from './blocks'
+
+
 export class Sidebar {
-    constructor(selector) {
+    constructor(selector, update) {
         this.$el = document.querySelector(selector)
+        this.update = update
 
         this.init()
     }
 
     init() {
-        this.$el.addEventListener('submit', this.addBlock)
+        this.$el.addEventListener('submit', this.addBlock.bind(this))
         this.$el.innerHTML = this.template
     }
 
@@ -24,8 +28,14 @@ export class Sidebar {
         const value = event.target.value.value
         const styles = event.target.styles.value
 
+        const Constructor = type === 'text' ? TextBlock : TitleBlock
 
-        debugger
+        const newBlock = new Constructor(value, {styles})
+        this.update(newBlock)
+
+        event.target.value.value = ''
+        event.target.styles.value = ''
+
     }
 }
 

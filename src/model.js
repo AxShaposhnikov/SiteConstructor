@@ -1,11 +1,18 @@
 import image from './assets/image.jpg'
 import {TitleBlock, ImageBlock, TextBlock, TextColumnsBlock} from './classes/blocks' 
+import {css} from './utils'
 
 export const model = [
 
     new TitleBlock('Конструктор сайтов на чистом JavaScript', {
         tag: 'h2',
-        styles: 'background: linear-gradient(to right, #ff0099, #493240); color: #fff; padding: 1.5rem; text-align: center;'
+        styles: css({
+            background: 'linear-gradient(to right, #ff0099, #493240)',
+            color: '#fff',
+            padding: '1.5rem',
+            'text-align': 'center'
+        })
+        //styles: 'background: linear-gradient(to right, #ff0099, #493240); color: #fff; padding: 1.5rem; text-align: center;'
     }),
 
     new ImageBlock(image, {
